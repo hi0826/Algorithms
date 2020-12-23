@@ -3,7 +3,7 @@ let cur = false;
 let memo = [];
 const isMatch = function(s, p) {
     initMemo(s.length, p.length);
-    console.log(memo);
+    
 }
 
 const initMemo = function(sLen, pLen) {
