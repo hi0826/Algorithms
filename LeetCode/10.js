@@ -1,17 +1,12 @@
-
-let cur = false;
-let memo = [];
 const isMatch = function(s, p) {
-    initMemo(s.length, p.length);
-    
+    // s : string
+    // p : pattern
+    // 정규식비교해서 완전 일치하면 됨
+    const reg = new RegExp(p);
+    const res = reg.exec(s);
+    if(res) 
+        return res[0] === s;
+    return false;
 }
 
-const initMemo = function(sLen, pLen) {
-    const property = new Array(pLen).fill(null);
-    for(let i = 0; i < sLen; ++i) {
-        memo.push(property);
-    }
-}
-
-const res = isMatch("abcd", "d*");
-console.log(res);
+isMatch("ab", ".*c");
