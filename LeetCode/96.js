@@ -1,11 +1,21 @@
 const numTrees = n => {
-    let answer = 0;
-    if(n <= 2) return n;
-    for(let i = n ; i > n/2 ; --i) {
-        answer += i;
-    }
-    if(n %2 === 0) answer += n/2;
-    return answer;
+    const memo = new Array(n+1).fill(0);
+    memo[0] = memo[1] = 1;
+
+    dp(n, memo);
+    return memo[n];
 }
 
-console.log(numTrees(3));
+const dp = (n, memo) => {    
+    if(memo[n] !== 0) return memo[n];
+
+    let sum = 0;
+    for(let root = 1; root <= n; ++root){
+        const leftSubTree = dp(root-1, memo);
+        const rightSubTree = dp(n-root, memo);
+        sum += leftSubTree * rightSubTree;
+    }
+
+    if(memo[n] === 0) memo[n] = sum;
+    return sum;
+}
