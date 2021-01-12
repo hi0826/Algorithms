@@ -20,25 +20,38 @@ class TreeNode {
 }
 
 const generateTrees = n => {
-    const root = new TreeNode(n);
-    const answer = [];
-    console.log(root); 
-
-    for(let i = 1; i <= n; ++i) {
-        makeTree(answer, n);
-    }
+    if(n === 0) return new TreeNode();
+    return recursion(1, n);
 };
 
-const recursion = n => {
-
+const recursion = ( start, end ) => {
+    if( start === end ) {
+        return [new TreeNode(start)];
+    }
+    const answer = [];
+    // i : root
+    // start ~ i : left
+    // i ~ end : right
+    for(let i = start ; i <= end; ++i) {
+        let left = [], right = [];
+        if(i !== start)
+            left = recursion(start, i-1);
+        else
+            left.push(null);
+        if(i !== end)
+            right = recursion(i+1, end);
+        else
+            right.push(null);
+        for(let j = 0; j < left.length; ++j) {
+            for(let k = 0; k < right.length; ++k) {
+                const node = new TreeNode(i);
+                node.left = left[j];
+                node.right = right[k];
+                answer.push(node);
+            }
+        }
+    }
+    return answer;
 }
 
-const makeTree = (answer, n) => {
-    if(n === null) return;
-    else answer.push(n);
-    makeTree(answer, n.left);
-    makeTree(answer, n.right);
-}
-
-
-generateTrees(1);
+generateTrees(3);
