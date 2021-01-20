@@ -1,9 +1,5 @@
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
 const permuteUnique = (nums) => {
-    const answer = backTracking(nums);
+    return backTracking(nums);
 };
 
 const backTracking = (nums) => {
@@ -23,7 +19,6 @@ const backTracking = (nums) => {
     };
 
     dp(answer, [], nums);
-    console.log(answer);
     return answer;
 }
 
@@ -39,5 +34,3 @@ Array.prototype.has = function(arr) {
     }
     return false;
 }
-
-permuteUnique([1,1,2]);
