@@ -21,8 +21,8 @@ const threeSumClosest = (nums, target) => {
                 if(Math.abs(target - closest) > cal) closest = sum;
                 console.log(cal);
                 console.log(closest);
-                if(target - sum > 0) back -= 1;
-                else if(target - sum <= 0) front += 1;
+                if(target < sum) back -= 1;
+                else if(target >= sum) front += 1;
             }
         }
     }
