@@ -19,8 +19,5 @@ const generateParenthesis = (n) => {
 
     recursion("", 0, 0);
     
-    console.log(answer);
     return answer;
 };
-
-generateParenthesis(3);
