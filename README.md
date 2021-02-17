@@ -1,4 +1,9 @@
 # Algorithms
-Programmers
-BOJ
-LeetCode
+사용언어는 자바스크립트입니다.
+자바스크립트로 풀기좋은 환경을 우선으로 풀이합니다.
+## Programmers
+
+## LeetCode
+
+## BOJ
+`이전에 C++를 사용하여 풀이했던 문제들이며 자바스크립트는 환경이 적절치않아 잠시 진행을 멈췄습니다.`
