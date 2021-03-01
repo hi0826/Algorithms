@@ -10,18 +10,11 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function (root) {
-    const isBST = (root) => {
-        if (root.left === null && root.right === null) return true;
-        const leftVal = root.left ? root.left.val : null;
-        const rightVal = root.right ? root.right.val : null;
-        if (leftVal !== null) return false;
-        if (rightVal !== null) return false;
-        if (root.left !== null) 
-            const leftBST = isBST(root.left);
-        if (root.right !== null) 
-            const rightBST = isBST(root.right);
-        return leftBST & rightBST;
+const isValidBST = (root) => {
+    const isBST = (root, low, high) => {
+        if(root === null) return true;
+        if((low !== null && root.val <= low) || (high !== null && root.val >= high)) return false;
+        return isBST(root.left, low, root.val) && isBST(root.right, root.val, high);
     }
-    return isBST(root);
+    return isBST(root, null, null);
 };
