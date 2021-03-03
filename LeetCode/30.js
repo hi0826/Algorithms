@@ -4,30 +4,36 @@
  * @return {number[]}
  */
 const findSubstring = (s, words) => {
-  const answer = new Set()
-  const length = words[0].length
-  const strArr = []
-  const makeStr = (s, words) => {
-    if (words.length === 0) {
-      strArr.push(s)
-      return
-    }
-    for (let i = 0; i < words.length; ++i) {
-      makeStr(
-        s + words[i],
-        words.filter((v, idx) => idx !== i)
-      )
-    }
-  }
-  makeStr('', words)
-  console.log(strArr)
-  for (let str of strArr) {
-    for (let i = 0; i < s.length; i += length) {
-      const n = s.indexOf(str)
-      if (n !== -1) answer.add(n)
-    }
-  }
-  return new Array()
-}
+  //sliding window
+  const answer = [];
 
-findSubstring('', [])
+  const wordLen = words[0].length;
+  const wordNum = words.length;
+  const wideLen = wordLen * wordNum;
+
+  const map = {};
+
+  for (let word of words) {
+    map[word] = map[word] + 1 || 1;
+  }
+
+  const isValid = (str) => {
+    const strs = {};
+    for (let i = 0; i < str.length; i += wordLen) {
+      strs[str.substr(i, wordLen)] = strs[str.substr(i, wordLen)] + 1 || 1;
+    }
+
+    for (key in map) {
+      if (map[key] !== strs[key]) return false;
+    }
+
+    return true;
+  };
+
+  for (let i = 0; i < s.length; ++i) {
+    const substr = s.substr(i, wideLen);
+    if (isValid(substr)) answer.push(i);
+  }
+
+  return answer;
+};
